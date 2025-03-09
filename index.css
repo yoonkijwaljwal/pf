@@ -103,8 +103,6 @@ body {
 /* showcase 스타일 */
 .showcase {
     width: 100%;
-    max-width: 640px;
-    height: 640px;
     overflow: hidden;
     position: relative;
 }
@@ -112,26 +110,78 @@ body {
 .showcase-container {
     display: flex;
     transition: transform 0.5s ease;
-    width: 100%;
-    height: 100%;
 }
 
 .showcase-content {
     width: 100%;
     max-width: 640px;
-    height: 640px;
     flex-shrink: 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
+    position: relative;
     background-color: #f5f5f5;
-    padding: 0 0 30px 30px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.showcase-content h2 {
+.showcase-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.showcase-text {
+    width: 100%;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+}
+
+.showcase-text h2 {
     font-size: 2rem;
     color: #333;
     margin: 0;
+}
+
+.showcase-content a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    display: block;
+    z-index: 5;
+}
+
+/* 프로젝트별 배경 이미지 */
+.showcase-content.dk-health .showcase-image {
+    background-image: url('img/dk_1.jpg');
+}
+
+.showcase-content.project-2 .showcase-image {
+    background-image: url('img/project_2.jpg');
+}
+
+.showcase-content.project-3 .showcase-image {
+    background-image: url('img/project_3.jpg');
+}
+
+.showcase-content.project-4 .showcase-image {
+    background-image: url('img/project_4.jpg');
+}
+
+.showcase-content.project-5 .showcase-image {
+    background-image: url('img/project_5.jpg');
+}
+
+.showcase-content.project-6 .showcase-image {
+    background-image: url('img/project_6.jpg');
+}
+
+.showcase-content.project-7 .showcase-image {
+    background-image: url('img/project_7.jpg');
 }
 
 .email-select {
@@ -173,7 +223,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
 }
 
 .page-num {
@@ -608,19 +657,9 @@ a, button, .clickable, .contact-arrow {
 
 /* 반응형 시작 */
 @media (max-width: 768px) {
-    .showcase, 
-    .showcase-content,
-    .navigation,
-    .works-section,
-    .contact-section,
-    .contact-content,
-    .contact-form {
-    }
-    
     .showcase,
     .showcase-content {
-        height: auto;
-        min-height: 480px;
+        width: 100%;
     }
 
     .contact-section {
@@ -707,15 +746,6 @@ a, button, .clickable, .contact-arrow {
 }
 
 @media (max-width: 360px) {
-    .showcase, 
-    .showcase-content,
-    .navigation,
-    .works-section,
-    .contact-section,
-    .contact-content,
-    .contact-form {
-
-    }
 
     .logo-area {
         padding: 10px 15px;
@@ -744,15 +774,9 @@ a, button, .clickable, .contact-arrow {
         font-size: 16px;
     }
 
-    .nav-prev, .nav-next {
-    }
-
     .work-thumbnail {
         width: 100px;
         height: 100px;
-    }
-
-    .work-info {
     }
 
     .work-title {

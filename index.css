@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+/* portfolio-container 스타일 */
+.portfolio-container {
+    width: 100%;
+    max-width: 640px;
+    margin: 0;
+    margin-left: 0;
+    margin-right: auto;
+}
 
 /* 폰트 설정 */
 @font-face {
@@ -28,7 +36,9 @@ body {
     font-family: 'Pretendard Variable', sans-serif;
     width: 100%;
     max-width: 640px;
-    margin: 0 auto;
+    margin: 0;
+    margin-left: 0;
+    margin-right: auto;
     cursor: url('./svg/mouse.svg') 12 12, auto;  /* 12 12는 커서의 중심점 위치입니다 */
 }
 
@@ -36,8 +46,8 @@ body {
 .header {
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    transform: none;
     width: 100%;
     max-width: 640px; /* body와 동일한 max-width 적용 */
     z-index: 2000;
@@ -53,7 +63,7 @@ body {
 
 .logo-area {
     flex: 1;
-    background: #EBEBEB;
+    background: #fff;
     padding: 10px 25px;
 }
 
@@ -78,6 +88,7 @@ body {
 
 /* 인트로 텍스트 */
 .intro-text {
+    background: #EBEBEB;
     width: 100%;
     max-width: 640px;
     padding: 28px 25px;
@@ -617,7 +628,7 @@ body {
 
 /* header 아래 콘텐츠가 header에 가리지 않도록 main-section에 패딩 추가 */
 .main-section {
-    padding-top: 72px; /* 헤더의 실제 높이에 맞춰 조정 */
+    padding-top: 50px; /* 헤더의 실제 높이에 맞춰 조정 */
 }
 
 .fixed-contact-header {

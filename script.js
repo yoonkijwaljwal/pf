@@ -4,21 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactSection = document.getElementById('contact-section');
     const contactArrow = document.querySelector('.contact-arrow');
 
-    window.addEventListener('scroll', function() {
-        const contactSectionRect = contactSection.getBoundingClientRect();
-        
-        // contact 섹션이 화면에 보이기 시작하면
-        if (contactSectionRect.top <= window.innerHeight) {
-            contactHeader.style.position = 'absolute';
-            contactHeader.style.bottom = 'auto';
-            contactHeader.style.top = (contactSectionRect.top + window.pageYOffset - 60) + 'px'; // 헤더 높이만큼 조정
-        } else {
-            contactHeader.style.position = 'fixed';
-            contactHeader.style.bottom = '0';
-            contactHeader.style.top = 'auto';
-        }
-    });
-
     // 화살표 클릭 이벤트
     contactArrow.addEventListener('click', function() {
         contactSection.scrollIntoView({ 
@@ -51,12 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeButtons.length > 0 && selectedType) {
         typeButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // 이전에 선택된 버튼의 스타일 제거
-                typeButtons.forEach(btn => btn.classList.remove('active'));
-                // 현재 버튼 활성화
-                this.classList.add('active');
-                // hidden 필드에 값 설정
-                selectedType.value = this.getAttribute('data-value');
+                // 현재 버튼의 active 상태를 토글
+                this.classList.toggle('active');
             });
         });
     }

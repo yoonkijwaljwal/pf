@@ -7,8 +7,8 @@
 
 /* portfolio-container 스타일 */
 .portfolio-container {
-    width: 640px;
-    max-width: 640px;
+    width: 500px;
+    max-width: 500px;
     margin: 0;
     margin-left: 0;
     margin-right: auto;
@@ -47,8 +47,8 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 640px;
-    max-width: 640px; /* body와 동일한 max-width 적용 */
+    width: 500px;
+    max-width: 500px; /* portfolio-container와 동일한 max-width 적용 */
     z-index: 2000;
     background-color: #fff;
     display: flex; /* 로고와 메뉴 영역을 가로로 배치 */
@@ -62,41 +62,15 @@ body {
 
 .logo-area {
     flex: 1;
-    background: #fff;
-    padding: 10px 25px;
+    background: #000;
+    padding: 5px 10px;
+    border-bottom: 1px solid #fff;
 }
 
 .logo-area h1 {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.menu-area {
-    width: 181px;
-    background: #FF6F00;
-    padding: 10px 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.menu-area span {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-/* 인트로 텍스트 */
-.intro-text {
-    background: #EBEBEB;
-    width: 100%;
-    max-width: 640px;
-    padding: 28px 25px;
-}
-
-.intro-text p {
-    font-size: 20px;
-    line-height: 32px;
-    color: #2E2E2E;
+    font-size: 24px;
+    font-weight: 500;
+    color: #fff;
 }
 
 /* 전체 컨테이너 스타일 */
@@ -143,13 +117,13 @@ body {
 
 .showcase-text {
     width: 100%;
-    padding: 20px 30px;
+    padding: 5px 10px;
     background-color: #fff;
     border-top: 1px solid #eee;
 }
 
 .showcase-text h2 {
-    font-size: 2rem;
+    font-size: 24px;
     color: #333;
     margin: 0;
 }
@@ -205,6 +179,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0px;
+    z-index: 1100; /* fixed-contact-header보다 높은 z-index 설정 */
 }
 
 .nav-prev, .nav-next {
@@ -294,6 +269,7 @@ body {
 
 /* 작업물 섹션 */
 .works-section {
+    display: none;
     width: 100%;
     max-width: 640px;
     position: relative;
@@ -310,17 +286,23 @@ body {
 }
 
 .works-header {
-    height: 60px;
-    background: #EBEBEB;
-    padding: 10px 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 60px;
+    background: #EBEBEB;
+    padding: 0 25px;
 }
 
 .works-header h2 {
-    font-size: 32px;
+    margin: 0;
+    font-size: 24px;
     font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .works-list .work-item {
@@ -375,14 +357,13 @@ body {
     max-width: 640px;
     background-color: #131313;
     color: #fff;
-    padding: 40px 25px;
+    padding: 20px 15px;
     border: 1px;
 }
 
 .contact-content {
     width: 100%;
     max-width: 640px;
-    margin: 0 auto;
 }
 
 .contact-intro {
@@ -390,14 +371,15 @@ body {
 }
 
 .contact-intro p {
-    font-size: 20px;
+    font-size: 16px;
     line-height: 1.6;
-    margin: 0 0 20px 0;
 }
 
 .contact-info {
     margin-bottom: 40px;
     font-size: 20px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid #fff;
 }
 
 .contact-info .info-item span,
@@ -431,9 +413,13 @@ body {
 
 .form-title {
     font-size: 20px;
-    font-weight: 800;
     margin-bottom: 30px;
     font-weight: normal;
+}
+
+.form-title h3{
+    font-weight: 800;
+    
 }
 
 .form-group {
@@ -523,11 +509,12 @@ body {
 .budget-btn.selected {
     background-color: #FF6B00;
     color: #fff;
+    font-weight: 700;
 }
 
 .type-btn:hover,
 .budget-btn:hover {
-    background-color: rgba(255, 107, 0, 0.1);
+    background-color: rgba(208, 131, 77, 0.564);
 }
 
 .date-inputs {
@@ -627,29 +614,26 @@ body {
 
 /* header 아래 콘텐츠가 header에 가리지 않도록 main-section에 패딩 추가 */
 .main-section {
-    padding-top: 50px; /* 헤더의 실제 높이에 맞춰 조정 */
+    padding-top: 40px; /* 헤더의 실제 높이에 맞춰 조정 */
 }
 
 .fixed-contact-header {
-    max-width: 640px;
-    position: relative; /* fixed에서 relative로 변경 */
-    bottom: auto;      /* bottom 속성 제거 */
-    left: auto;        /* left 속성 제거 */
-    transform: none;   /* transform 제거 */
+    bottom: 0;
+    left: 0;
     width: 100%;
-    max-width: 640px;
+    max-width: 500px; /* portfolio-container와 동일하게 500px로 변경 */
     background-color: #EBEBEB;
-    padding: 10px 25px;
-    z-index: 1;
+    padding: 10px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 40px;
+    transition: all 0.3s ease; /* 부드러운 전환 효과 추가 */
 }
 
 .fixed-contact-header h2 {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 /* 클릭 가능한 요소에 대한 커서 스타일 */
@@ -668,7 +652,7 @@ a, button, .clickable, .contact-arrow {
     position: fixed;
     top: 0;
     right: 0;
-    width: calc(100% - 640px); /* 화면 너비에서 메인 콘텐츠 너비를 뺀 값 */
+    width: calc(100% - 500px); /* 화면 너비에서 메인 콘텐츠 너비를 뺀 값 */
     height: 100vh;
     background-color: #f8f8f8;
     border-left: 1px solid #e0e0e0;
@@ -680,21 +664,24 @@ a, button, .clickable, .contact-arrow {
 
 .sidebar-title {
     margin-bottom: 0;
-    padding: 20px;
-    border-bottom: 2px solid #000;
-    background-color: #fff;
+    padding: 5px;
+    padding-left: 10px;
+    border-bottom: 1px solid #fff;
+    background-color: #000;
+
 }
 
 .sidebar-title h3 {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 500;
     margin: 0;
+    color: #fff;
 }
 
 .sidebar-projects {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개씩 배치 */
+    gap: 10px; /* 썸네일 간의 간격 */
 }
 
 .sidebar-project {
@@ -704,32 +691,38 @@ a, button, .clickable, .contact-arrow {
     border-bottom: 1px solid #e0e0e0;
 }
 
-.sidebar-thumbnail {
-    width: 100%;
-    height: 180px;
-    background-color: #e0e0e0;
-    position: relative;
-    overflow: hidden;
-}
-
-.sidebar-thumbnail a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-}
-
 .sidebar-project-title {
     padding: 15px;
     background-color: #fff;
+    order: -1; /* 제목을 썸네일 위로 이동 */
 }
 
-.sidebar-project-title h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0;
+.sidebar-thumbnail {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 1:1 비율 유지 */
+    background-color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-thumbnail:hover {
+    transform: scale(1.1); /* 마우스오버된 썸네일 커짐 */
+    z-index: 1; /* 겹침 방지 */
+}
+
+.sidebar-thumbnail:hover ~ .sidebar-thumbnail {
+    transform: scale(0.9); /* 오른쪽 썸네일 줄어듦 */
+}
+
+.sidebar-thumbnail:hover + .sidebar-thumbnail {
+    transform: scale(0.9); /* 왼쪽 썸네일 줄어듦 */
+}
+
+.sidebar-description {
+    padding: 15px;
+    background-color: #fff;
+    order: 1; /* 설명을 썸네일 아래로 이동 */
 }
 
 /* 첫 번째 프로젝트 썸네일 스타일 (동국제약건강몰) */
@@ -773,8 +766,17 @@ a, button, .clickable, .contact-arrow {
         transform: translateX(-50%);
     }
     
+}
+
+@media (max-width: 779px) {
     .sidebar {
         display: none;
+    }
+}
+
+@media (max-width: 780px) {
+    .sidebar {
+        /* 780px 이하에서 적용할 스타일을 여기에 추가하세요 */
     }
 }
 
@@ -795,7 +797,7 @@ a, button, .clickable, .contact-arrow {
     }
 
     .contact-section {
-        padding: 40px 20px;
+        padding: 10px 10px;
     }
 
     .contact-header h2 {
@@ -817,14 +819,6 @@ a, button, .clickable, .contact-arrow {
         font-size: 28px;
     }
 
-    .menu-area {
-        width: 150px;
-    }
-
-    .menu-area span {
-        font-size: 28px;
-    }
-
     .intro-text p {
         font-size: 18px;
         line-height: 28px;
@@ -843,14 +837,6 @@ a, button, .clickable, .contact-arrow {
     }
 
     .logo-area h1 {
-        font-size: 24px;
-    }
-
-    .menu-area {
-        width: 120px;
-    }
-
-    .menu-area span {
         font-size: 24px;
     }
 
@@ -884,15 +870,6 @@ a, button, .clickable, .contact-arrow {
     }
 
     .logo-area h1 {
-        font-size: 20px;
-    }
-
-    .menu-area {
-        width: 100px;
-        padding: 10px 15px;
-    }
-
-    .menu-area span {
         font-size: 20px;
     }
 
@@ -930,10 +907,24 @@ a, button, .clickable, .contact-arrow {
     .contact-info .info-item span,
     .contact-info .info-item a {
         font-size: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #fff;
     }
 
     .form-group {
         margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .works-header, .works-list {
+        display: block;
+    }
+}
+
+@media (min-width: 901px) {
+    .works-header, .works-list {
+        display: none;
     }
 }
 

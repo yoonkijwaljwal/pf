@@ -17,10 +17,16 @@
 
 /* 폰트 설정 */
 @font-face {
-    font-family: 'Pretendard';
-    src: url('./fonts/Pretendard-Regular.woff2') format('woff2'),
-         url('./fonts/Pretendard-Regular.woff') format('woff'),
-         url('./fonts/Pretendard-Regular.ttf') format('truetype');
+    font-family: 'NanumSquareNeo';
+    src: url('./eot/NanumSquareNeo-Variable.eot');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SF Pro';
+    src: url('./eot/SF-Pro.eot');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -34,7 +40,7 @@
 }
 
 body {
-    font-family: 'Pretendard Variable', sans-serif;
+    font-family: 'NanumSquareNeo', 'SF Pro', sans-serif;
     width: 100%;
     display: flex;
     margin: 0;
@@ -65,11 +71,12 @@ body {
     background: #000;
     padding: 5px 10px;
     border-bottom: 1px solid #fff;
+    max-width: 640px;
 }
 
 .logo-area h1 {
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 400;
     color: #fff;
 }
 
@@ -145,7 +152,7 @@ body {
 }
 
 .showcase-content.project-2 .showcase-image {
-    background-image: url('img/project_2.jpg');
+    background-image: url('./design/231231_메인포스터3.gif');
 }
 
 .showcase-content.project-3 .showcase-image {
@@ -217,7 +224,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; /* Safari 폴백 폰트 추가 */
+    font-family: 'NanumSquareNeo', -apple-system, BlinkMacSystemFont, sans-serif; /* Safari 폴백 폰트 추가 */
     font-size: 32px;
     color: #2E2E2E;
     cursor: pointer;
@@ -436,12 +443,13 @@ body {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    background: transparent;
+    background: #222222;
     border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding: 10px 0;
     color: #fff;
     font-size: 14px;
+    padding-left: 10px;
+    font-family: 'NanumSquareNeo', -apple-system, BlinkMacSystemFont, sans-serif; /* Safari 폴백 폰트 추가 */   
 }
 
 .form-group input::placeholder,
@@ -621,7 +629,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    max-width: 500px; /* portfolio-container와 동일하게 500px로 변경 */
+    max-width: 640px; /* portfolio-container와 동일하게 500px로 변경 */
     background-color: #EBEBEB;
     padding: 10px 10px;
     display: flex;
@@ -673,7 +681,7 @@ a, button, .clickable, .contact-arrow {
 
 .sidebar-title h3 {
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 400;
     margin: 0;
     color: #fff;
 }
@@ -703,7 +711,6 @@ a, button, .clickable, .contact-arrow {
     background-color: #e0e0e0;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease;
 }
 
 .sidebar-thumbnail:hover {

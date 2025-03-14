@@ -130,7 +130,7 @@ body {
 }
 
 .showcase-text h2 {
-    font-size: 24px;
+    font-size: 20px;
     color: #333;
     margin: 0;
 }
@@ -218,7 +218,7 @@ body {
 }
 
 .page-num {
-    width: 40px;
+    width: 100%;
     height: 100%;
     max-height: 40px;
     display: flex;
@@ -246,7 +246,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #FF8A00;
+    background-color: #272727;
     animation: fillBackground 5s linear forwards;
     z-index: 0;
 }
@@ -713,19 +713,6 @@ a, button, .clickable, .contact-arrow {
     overflow: hidden;
 }
 
-.sidebar-thumbnail:hover {
-    transform: scale(1.1); /* 마우스오버된 썸네일 커짐 */
-    z-index: 1; /* 겹침 방지 */
-}
-
-.sidebar-thumbnail:hover ~ .sidebar-thumbnail {
-    transform: scale(0.9); /* 오른쪽 썸네일 줄어듦 */
-}
-
-.sidebar-thumbnail:hover + .sidebar-thumbnail {
-    transform: scale(0.9); /* 왼쪽 썸네일 줄어듦 */
-}
-
 .sidebar-description {
     padding: 15px;
     background-color: #fff;
@@ -741,19 +728,19 @@ a, button, .clickable, .contact-arrow {
 
 /* 나머지 프로젝트 썸네일 스타일 */
 .sidebar-project:nth-child(2) .sidebar-thumbnail {
-    background-color: #FF6F00;
+    background-color: #848484;
 }
 
 .sidebar-project:nth-child(3) .sidebar-thumbnail {
-    background-color: #4CAF50;
+    background-color: #848484;
 }
 
 .sidebar-project:nth-child(4) .sidebar-thumbnail {
-    background-color: #2196F3;
+    background-color: #848484;
 }
 
 .sidebar-project:nth-child(5) .sidebar-thumbnail {
-    background-color: #9C27B0;
+    background-color: #848484;
 }
 
 /* 반응형 스타일 */
@@ -763,16 +750,36 @@ a, button, .clickable, .contact-arrow {
     }
     
     .portfolio-container {
-        width: 100%;
-        max-width: 640px;
-        margin: 0 auto;
+        width: 500px;
+        max-width: 500px;
+        margin: 0;
+        margin-left: 0;
+        margin-right: auto;
+        left: 0;
     }
     
     .header {
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        transform: none;
+        width: 500px;
+        max-width: 500px;
     }
     
+    .fixed-contact-header {
+        left: 0;
+        width: 500px;
+        max-width: 500px;
+    }
+    
+    .footer {
+        left: 0;
+        width: 500px;
+        max-width: 500px;
+    }
+    
+    .sidebar {
+        width: calc(100% - 500px);
+    }
 }
 
 @media (max-width: 779px) {
@@ -791,11 +798,29 @@ a, button, .clickable, .contact-arrow {
     .portfolio-container {
         width: 100%;
         max-width: 100%;
+        margin: 0 auto;
+        left: auto;
     }
     
     .header {
         width: 100%;
         max-width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .fixed-contact-header {
+        width: 100%;
+        max-width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer {
+        width: 100%;
+        max-width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     .showcase,
@@ -942,4 +967,24 @@ a, button, .clickable, .contact-arrow {
     100% {
         clip-path: inset(0 0 0 0);
     }
+}
+
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(0);
+    transition: transform 0.5s ease;
+}
+
+.loading-logo {
+    width: 80%;
+    fill: none;
+    stroke: white;
+    stroke-miterlimit: 10;
+    stroke-width: 0.75px;
 }

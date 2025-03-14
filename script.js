@@ -175,5 +175,5 @@ window.addEventListener('load', function() {
     loadingScreen.style.transform = 'translateY(-100%)';
     setTimeout(() => {
         loadingScreen.style.display = 'none';
-    }, 500); // 애니메이션 시간과 일치시킵니다.
+    }, 500);
 }); 

@@ -13,6 +13,7 @@
     margin-left: 0;
     margin-right: auto;
     position: relative;
+    left: 0;
 }
 
 /* 폰트 설정 */
@@ -744,9 +745,44 @@ a, button, .clickable, .contact-arrow {
 }
 
 /* 반응형 스타일 */
-@media (max-width: 1024px) {
+@media (min-width: 1025px) {
+    .portfolio-container {
+        width: 500px;
+        max-width: 500px;
+        margin: 0;
+        margin-left: 0;
+        margin-right: auto;
+        left: 0;
+    }
+    
+    .header {
+        left: 0;
+        transform: none;
+        width: 500px;
+        max-width: 500px;
+    }
+    
+    .fixed-contact-header {
+        left: 0;
+        width: 500px;
+        max-width: 500px;
+    }
+    
+    .footer {
+        left: 0;
+        width: 500px;
+        max-width: 500px;
+    }
+    
+    .sidebar {
+        width: calc(100% - 500px);
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 781px) {
     body {
-        display: block;
+        display: flex;
+        flex-direction: row;
     }
     
     .portfolio-container {
@@ -782,19 +818,11 @@ a, button, .clickable, .contact-arrow {
     }
 }
 
-@media (max-width: 779px) {
-    .sidebar {
-        display: none;
-    }
-}
-
 @media (max-width: 780px) {
-    .sidebar {
-        /* 780px 이하에서 적용할 스타일을 여기에 추가하세요 */
+    body {
+        display: block;
     }
-}
-
-@media (max-width: 768px) {
+    
     .portfolio-container {
         width: 100%;
         max-width: 100%;
@@ -821,6 +849,22 @@ a, button, .clickable, .contact-arrow {
         max-width: 100%;
         left: 50%;
         transform: translateX(-50%);
+    }
+    
+    .sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-container {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .header {
+        width: 100%;
+        max-width: 100%;
     }
     
     .showcase,
@@ -987,4 +1031,113 @@ a, button, .clickable, .contact-arrow {
     stroke: white;
     stroke-miterlimit: 10;
     stroke-width: 0.75px;
+}
+
+/* 그림판 스타일 */
+.drawing-section {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.drawing-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.tools {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#drawing-board {
+    width: 100%;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    cursor: crosshair;
+    margin-bottom: 15px;
+}
+
+.saved-drawings {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#drawings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.drawing-item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.drawing-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+}
+
+.drawing-item .actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.drawing-item .actions button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+input[type="color"] {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 100px;
+}
+
+@media (max-width: 768px) {
+    .drawing-section {
+        max-width: 100%;
+        padding: 15px;
+    }
+    
+    #drawing-board {
+        height: 300px;
+    }
+    
+    .tools {
+        flex-wrap: wrap;
+    }
 }

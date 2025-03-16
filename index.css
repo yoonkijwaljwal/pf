@@ -72,7 +72,6 @@ body {
     background: #000;
     padding: 5px 10px;
     border-bottom: 1px solid #fff;
-    max-width: 640px;
 }
 
 .logo-area h1 {
@@ -84,7 +83,7 @@ body {
 /* 전체 컨테이너 스타일 */
 .container {
     width: 100%;
-    max-width: 640px;
+    max-width: 1080px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,6 +94,7 @@ body {
 /* showcase 스타일 */
 .showcase {
     width: 100%;
+    max-width: 1080px;
     overflow: hidden;
     position: relative;
 }
@@ -106,7 +106,6 @@ body {
 
 .showcase-content {
     width: 100%;
-    max-width: 640px;
     flex-shrink: 0;
     position: relative;
     background-color: #f5f5f5;
@@ -117,6 +116,7 @@ body {
 
 .showcase-image {
     width: 100%;
+    max-width: 1080px;
     aspect-ratio: 1/1;
     background-size: cover;
     background-position: center;
@@ -141,7 +141,6 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     text-decoration: none;
     display: block;
     z-index: 5;
@@ -182,7 +181,7 @@ body {
 /* navigation 스타일 */
 .navigation {
     width: 100%;
-    max-width: 640px;
+    max-width: 1080px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -362,7 +361,7 @@ body {
 
 .contact-section {
     width: 100%;
-    max-width: 640px;
+    max-width: 1080px;
     background-color: #131313;
     color: #fff;
     padding: 20px 15px;
@@ -747,7 +746,7 @@ a, button, .clickable, .contact-arrow {
 /* 반응형 스타일 */
 @media (min-width: 1025px) {
     .portfolio-container {
-        width: 500px;
+        width: 100%;
         max-width: 500px;
         margin: 0;
         margin-left: 0;
@@ -821,38 +820,45 @@ a, button, .clickable, .contact-arrow {
 @media (max-width: 780px) {
     body {
         display: block;
+        width: 100%;
+        overflow-x: hidden; /* 가로 스크롤 방지 */
     }
     
     .portfolio-container {
         width: 100%;
         max-width: 100%;
-        margin: 0 auto;
-        left: auto;
+        margin: 0;
+        left: 0;
+        right: 0;
     }
     
     .header {
         width: 100%;
         max-width: 100%;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        transform: none;
     }
     
     .fixed-contact-header {
         width: 100%;
         max-width: 100%;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        transform: none;
     }
     
     .footer {
         width: 100%;
         max-width: 100%;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        transform: none;
     }
     
     .sidebar {
         display: none;
+    }
+    
+    .logo-area {
+        width: 100%;
     }
 }
 
@@ -860,6 +866,7 @@ a, button, .clickable, .contact-arrow {
     .portfolio-container {
         width: 100%;
         max-width: 100%;
+        margin: 0;
     }
     
     .header {

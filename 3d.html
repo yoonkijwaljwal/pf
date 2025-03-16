@@ -52,6 +52,23 @@
             text-align: center;
             z-index: 5;
         }
+        
+        @media (max-width: 1024px) and (min-width: 781px) {
+            .model-viewer {
+                height: 500px;
+            }
+        }
+        
+        @media (max-width: 780px) {
+            .model-viewer {
+                height: 400px;
+            }
+            
+            .controls button {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
     </style>
     <!-- Three.js 라이브러리를 head에 로드 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.144.0/three.min.js"></script>

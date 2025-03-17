@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase 웹 그림판</title>
+    <title>웹 그림판</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -22,11 +22,7 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <!-- Firebase SDK 제거 -->
     <script src="app.js"></script>
 </body>
 </html>
@@ -145,21 +141,7 @@ input[type="range"] {
 </style>
 
 <script>
-    // Firebase 초기화
-const firebaseConfig = {
-    // Firebase 콘솔에서 가져온 설정 정보
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-};
-
-// Firebase 초기화
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const storage = firebase.storage();
+// Firebase 초기화 코드 제거
 
 // 캔버스 설정
 const canvas = document.getElementById('drawing-board');
@@ -254,7 +236,7 @@ clearBtn.addEventListener('click', () => {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 });
 
-// 그림 저장
+// 그림 저장 (localStorage 사용)
 saveBtn.addEventListener('click', saveDrawing);
 
 function saveDrawing() {
@@ -264,79 +246,67 @@ function saveDrawing() {
     // 파일 이름 생성 (현재 시간 기준)
     const fileName = `drawing_${new Date().getTime()}.png`;
     
-    // Firebase Storage에 업로드
-    const storageRef = storage.ref(`drawings/${fileName}`);
+    // 로컬 스토리지에서 기존 그림 목록 가져오기
+    let drawings = JSON.parse(localStorage.getItem('drawings') || '[]');
     
-    // 데이터 URL에서 base64 인코딩된 문자열 추출
-    const imageData = dataURL.split(',')[1];
+    // 새 그림 추가
+    drawings.push({
+        id: new Date().getTime().toString(),
+        imageUrl: dataURL,
+        createdAt: new Date().toISOString(),
+        fileName: fileName
+    });
     
-    // 업로드 작업
-    storageRef.putString(imageData, 'base64', { contentType: 'image/png' })
-        .then(snapshot => {
-            // 다운로드 URL 가져오기
-            return snapshot.ref.getDownloadURL();
-        })
-        .then(downloadURL => {
-            // Firestore에 그림 정보 저장
-            return db.collection('drawings').add({
-                imageUrl: downloadURL,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                fileName: fileName
-            });
-        })
-        .then(() => {
-            alert('그림이 성공적으로 저장되었습니다!');
-            loadDrawings(); // 저장된 그림 목록 새로고침
-        })
-        .catch(error => {
-            console.error('그림 저장 중 오류 발생:', error);
-            alert('그림 저장 중 오류가 발생했습니다.');
-        });
+    // 최대 10개까지만 저장
+    if (drawings.length > 10) {
+        drawings = drawings.slice(-10);
+    }
+    
+    // 로컬 스토리지에 저장
+    localStorage.setItem('drawings', JSON.stringify(drawings));
+    
+    alert('그림이 성공적으로 저장되었습니다!');
+    loadDrawings(); // 저장된 그림 목록 새로고침
 }
 
-// 저장된 그림 불러오기
+// 저장된 그림 불러오기 (localStorage 사용)
 function loadDrawings() {
     drawingsContainer.innerHTML = '';
     
-    db.collection('drawings')
-        .orderBy('createdAt', 'desc')
-        .limit(10)
-        .get()
-        .then(querySnapshot => {
-            querySnapshot.forEach(doc => {
-                const drawingData = doc.data();
-                const drawingItem = document.createElement('div');
-                drawingItem.className = 'drawing-item';
-                drawingItem.innerHTML = `
-                    <img src="${drawingData.imageUrl}" alt="저장된 그림">
-                    <div class="actions">
-                        <button class="load-btn" data-url="${drawingData.imageUrl}">불러오기</button>
-                        <button class="delete-btn" data-id="${doc.id}" data-filename="${drawingData.fileName}">삭제</button>
-                    </div>
-                `;
-                drawingsContainer.appendChild(drawingItem);
-            });
-            
-            // 불러오기 버튼 이벤트 추가
-            document.querySelectorAll('.load-btn').forEach(btn => {
-                btn.addEventListener('click', loadDrawingToCanvas);
-            });
-            
-            // 삭제 버튼 이벤트 추가
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', deleteDrawing);
-            });
-        })
-        .catch(error => {
-            console.error('그림 목록 불러오기 중 오류 발생:', error);
-        });
+    // 로컬 스토리지에서 그림 목록 가져오기
+    const drawings = JSON.parse(localStorage.getItem('drawings') || '[]');
+    
+    // 최신 순으로 정렬
+    drawings.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    
+    drawings.forEach(drawing => {
+        const drawingItem = document.createElement('div');
+        drawingItem.className = 'drawing-item';
+        drawingItem.innerHTML = `
+            <img src="${drawing.imageUrl}" alt="저장된 그림">
+            <div class="actions">
+                <button class="load-btn" data-url="${drawing.imageUrl}">불러오기</button>
+                <button class="delete-btn" data-id="${drawing.id}">삭제</button>
+            </div>
+        `;
+        drawingsContainer.appendChild(drawingItem);
+    });
+    
+    // 불러오기 버튼 이벤트 추가
+    document.querySelectorAll('.load-btn').forEach(btn => {
+        btn.addEventListener('click', loadDrawingToCanvas);
+    });
+    
+    // 삭제 버튼 이벤트 추가
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', deleteDrawing);
+    });
 }
 
 // 그림을 캔버스로 불러오기
 function loadDrawingToCanvas(e) {
     const imageUrl = e.target.getAttribute('data-url');
     const img = new Image();
-    img.crossOrigin = 'anonymous';
     img.onload = function() {
         // 캔버스 지우기
         ctx.fillStyle = '#ffffff';
@@ -355,26 +325,22 @@ function loadDrawingToCanvas(e) {
     img.src = imageUrl;
 }
 
-// 그림 삭제
+// 그림 삭제 (localStorage 사용)
 function deleteDrawing(e) {
-    const docId = e.target.getAttribute('data-id');
-    const fileName = e.target.getAttribute('data-filename');
+    const drawingId = e.target.getAttribute('data-id');
     
     if (confirm('정말로 이 그림을 삭제하시겠습니까?')) {
-        // Firestore에서 문서 삭제
-        db.collection('drawings').doc(docId).delete()
-            .then(() => {
-                // Storage에서 파일 삭제
-                return storage.ref(`drawings/${fileName}`).delete();
-            })
-            .then(() => {
-                alert('그림이 삭제되었습니다.');
-                loadDrawings(); // 목록 새로고침
-            })
-            .catch(error => {
-                console.error('그림 삭제 중 오류 발생:', error);
-                alert('그림 삭제 중 오류가 발생했습니다.');
-            });
+        // 로컬 스토리지에서 그림 목록 가져오기
+        let drawings = JSON.parse(localStorage.getItem('drawings') || '[]');
+        
+        // 해당 ID의 그림 제거
+        drawings = drawings.filter(drawing => drawing.id !== drawingId);
+        
+        // 로컬 스토리지에 업데이트된 목록 저장
+        localStorage.setItem('drawings', JSON.stringify(drawings));
+        
+        alert('그림이 삭제되었습니다.');
+        loadDrawings(); // 목록 새로고침
     }
 }
 
